@@ -1,0 +1,112 @@
+general {
+        #output_format = "dzen2"
+        #colors = true
+        interval = 5
+	#color_good = "#25BE08"
+  	#color_degraded = "#FF7F50"
+  	#color_bad = "#BF3619"
+  	separator = " | "
+}
+
+#order += "ipv6"
+#order += "read_file uptime"
+order += "disk /"
+order += "volume master"
+#order += "run_watch DHCP"
+#order += "run_watch VPNC"
+order += "path_exists VPN"
+order += "wireless _first_"
+#order += "ethernet eth0"
+order += "battery 0"
+order += "cpu_temperature 0"
+order += "load"
+order += "memory"
+order += "tztime local"
+order += "tztime home"
+
+wireless _first_ {
+        format_up = "📡: (%quality @ %essid, %bitrate)"# %ip"
+        format_down = "W: down"
+}
+
+ethernet eth0 {
+        format_up = "E: %ip (%speed)"
+        format_down = "E: down"
+}
+
+battery 0 {
+        format = "%status %percentage %remaining %emptytime"
+        format_down = "No battery"
+        status_chr = "🔌 CHR"
+        status_bat = "🔋 BAT"
+        status_unk = "? UNK"
+        status_full = "🔋 FULL"
+        path = "/sys/class/power_supply/BAT%d/uevent"
+        low_threshold = 40
+	threshold_type = time
+}
+
+run_watch DHCP {
+        pidfile = "/var/run/dhclient*.pid"
+}
+
+run_watch VPNC {
+        # file containing the PID of a vpnc process
+        pidfile = "/var/run/vpnc/pid"
+}
+
+path_exists VPN {
+        # path exists when a VPN tunnel launched by nmcli/nm-applet is active
+        path = "/proc/sys/net/ipv4/conf/tun0"
+}
+
+tztime local {
+        format = "📅 %Y-%m-%d %H:%M:%S"
+        hide_if_equals_localtime = true
+}
+
+tztime home {
+        format = "⏳ %Y-%m-%d %H:%M  "
+        timezone = "Europe/Prague"
+}
+
+load {
+        format = "🧮 %5min"
+}
+
+cpu_temperature 0 {
+        format = "🌡️ %degrees°C"
+        path = "/sys/class/thermal/thermal_zone0/temp"
+}
+
+memory {
+        format = "🐏 %used"
+        threshold_degraded = "10%"
+        format_degraded = "MEMORY: %free"
+}
+
+disk "/" {
+        format = "💾 %avail"
+}
+
+read_file uptime {
+	format = "%title: %time"
+        path = "/proc/uptime"
+}
+
+volume master {
+        format = "♪: %volume"
+        format_muted = "♪: muted (%volume)"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
+}
+
+############################3
+general {
+  output_format = "i3bar"
+  colors = true
+  color_good = "#50FA7B"
+  color_degraded = "#F1FA8C"
+  color_bad = "#FF5555"
+}
