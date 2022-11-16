@@ -266,5 +266,5 @@ bindsym $mod+r mode "resize"
 
 exec --no-startup-id xdg-user-dirs-update
 
-#include dracula-theme
+include dracula-theme
 

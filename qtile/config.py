@@ -168,7 +168,9 @@ screens = [
                     foreground = colors[7],
                     background = colors[0]
                 ),
-                widget.Prompt(),
+                widget.Prompt(
+                    foreground = colors[7]
+                ),
                 widget.Spacer(),
                 widget.Backlight(
                     fmt='💡{}',
