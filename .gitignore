@@ -1,12 +1,10 @@
 # Ignore everything
-*
-
-# even if they are in subdirectories
-!*/
+.*
 
 # Only include the following
 !.gitignore
-!alacritty.yml
+!alacritty/*
 !i3/*
 !i3status/*
 !sway/*
+!qtile/*
