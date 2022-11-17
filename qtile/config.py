@@ -174,10 +174,11 @@ screens = [
                 widget.Spacer(),
                 widget.Backlight(
                     fmt='💡{}',
-                    change_command='brigthtnessctl set {0}',
+                    change_command='brigthtnessctl set {}',
                     brightness_file='/sys/class/backlight/amdgpu_bl0/brightness',
                     max_brightness_file='/sys/class/backlight/amdgpu_bl0/max_brightness',
-                    foreground = colors[7]
+                    foreground = colors[7],
+                    scroll = True
                     ),
                 widget.Sep(
                     linewidth = 1,
@@ -238,7 +239,10 @@ screens = [
                     charge_char="🔌",
                     empty_char="🪫",
                     discharge_char="🔋",
-                    foreground = colors[7]
+                    foreground = colors[7],
+                    low_percentage = 0.18,
+                    notify_below = 10,
+                    low_foreground = colors[1]
                     ),
                 widget.Sep(
                     linewidth = 1,
