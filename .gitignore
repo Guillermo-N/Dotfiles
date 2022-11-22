@@ -3,6 +3,10 @@
 
 # Only include the following
 !.gitignore
+!conky
+conky/*
+!conky/conky.conf
+!alacritty
 !alacritty/*
 !i3/*
 !i3status/*

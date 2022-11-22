@@ -51,6 +51,7 @@ keys = [
         desc="Toggle between split and unsplit sides of stack",
     ),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
+    Key([mod], "b", lazy.spawn('librewolf'), desc="Launch librewolf"),
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
@@ -147,6 +148,8 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
+        #wallpaper = '~/Pictures/ThinkPad_wallpaper.jpg',
+        #wallpaper_mode = 'strech',
         top=bar.Bar(
             [
                 widget.CurrentLayout(
@@ -306,6 +309,7 @@ screens = [
                 widget.Systray(),
                 widget.Wallpaper(
                     directory = '~/Pictures/wallpapers/',
+                    #wallpaper = '~/Pictures/ThinkPad_wallpaper.jpg',
                     wallpaper_command = ['feh', '--bg-fill'],
                     random_selection = True,
                     fmt = '🧭'
