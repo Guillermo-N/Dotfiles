@@ -4,9 +4,15 @@ from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+import os
 
 mod = "mod4"
 terminal = guess_terminal()
+
+# Callbak functions for keys
+
+def crank_up_brightness():
+    os.system("brightnessctl set +10")
 
 keys = [
     
@@ -59,6 +65,19 @@ keys = [
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+
+
+
+    Key([], "XF86MonBrightnessUp", lazy.spawn('brightnessctl set +10')),
+    Key([], "XF86MonBrightnessDown", lazy.spawn('brightnessctl set 10-')),
+
+
+    Key([], "XF86AudioRaiseVolume", lazy.spawn('pactl set-sink-volume @DEFAULT_SINK@ +10%')),
+    Key([], "XF86AudioLowerVolume", lazy.spawn('pactl set-sink-volume @DEFAULT_SINK@ -10%')),
+    Key([], "XF86AudioMute", lazy.spawn('pactl set-sink-mute @DEFAULT_SINK@ toggle')),
+    Key([], "XF86AudioMicMute", lazy.spawn('pactl set-source-mute @DEFAULT_SOURCE@ toggle')),
+
+
 ]
 
 groups = [Group(i) for i in "12345678"]
@@ -189,16 +208,6 @@ screens = [
                     foreground = colors[4],
                     background = colors[0]
                 ),
-                widget.Memory(
-                    measure_mem='G',
-                    foreground = colors[7]
-                    ),
-                widget.Sep(
-                    linewidth = 1,
-                    padding = 8,
-                    foreground = colors[4],
-                    background = colors[0]
-                ),
                 widget.DF(
                     measure='G',
                     warn_space=20,
@@ -208,16 +217,6 @@ screens = [
                     fmt='💾{}',
                     foreground = colors[7]
                 ),
-                widget.Sep(
-                    linewidth = 1,
-                    padding = 8,
-                    foreground = colors[4],
-                    background = colors[0]
-                ),
-                widget.Load(
-                    format='🧮{load:.1f}',
-                    foreground = colors[7]
-                    ),
                 widget.Sep(
                     linewidth = 1,
                     padding = 8,
@@ -278,18 +277,6 @@ screens = [
                     background = colors[0]
                 ),
                 widget.Bluetooth(),
-                widget.Sep(
-                    linewidth = 1,
-                    padding = 8,
-                    foreground = colors[4],
-                    background = colors[0]
-                ),
-                widget.Wttr(
-                    location={'Brno': 'Brno'},
-                    foreground = colors[7],
-                    fmt = '{}',
-                    format = 2
-                ),
                 widget.Sep(
                     linewidth = 1,
                     padding = 8,
