@@ -4,15 +4,11 @@ from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
-import os
 
 mod = "mod4"
 terminal = guess_terminal()
 
 # Callbak functions for keys
-
-def crank_up_brightness():
-    os.system("brightnessctl set +10")
 
 keys = [
     
@@ -67,11 +63,11 @@ keys = [
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
 
-
+    # Brightness
     Key([], "XF86MonBrightnessUp", lazy.spawn('brightnessctl set +10')),
     Key([], "XF86MonBrightnessDown", lazy.spawn('brightnessctl set 10-')),
 
-
+    # Sound
     Key([], "XF86AudioRaiseVolume", lazy.spawn('pactl set-sink-volume @DEFAULT_SINK@ +10%')),
     Key([], "XF86AudioLowerVolume", lazy.spawn('pactl set-sink-volume @DEFAULT_SINK@ -10%')),
     Key([], "XF86AudioMute", lazy.spawn('pactl set-sink-mute @DEFAULT_SINK@ toggle')),
