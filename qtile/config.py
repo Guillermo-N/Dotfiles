@@ -58,7 +58,8 @@ keys = [
     ),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "b", lazy.spawn('brave-browser'), desc="Launch librewolf"),
-    Key([mod], "d", lazy.spawn("dmenu_run -l 20 -nb '#121417' -nf '#e5c5aa' -sb '#665f54' -sf '#1298ba'"), desc="Launch dmenu"), #509452
+    Key([mod], "d", lazy.spawn("dmenu_run -l 20 -nb '#121417' -nf '#e5c5aa' -sb '#665f54' -sf '#1298ba'"), desc="Launch dmenu"),
+    Key([mod], "p", lazy.spawn("passmenu -l 20 -nb '#121417' -nf '#d0623c' -sb '#665f54' -sf '#ff645a'"), desc="Launch passmenu"),
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
