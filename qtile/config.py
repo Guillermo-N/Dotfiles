@@ -1,14 +1,18 @@
 ### QTile windows manager configuration ###
 
-from libqtile import bar, layout, widget
+from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+import os
 
 mod = "mod4"
 terminal = guess_terminal()
 
 # Callbak functions for keys
+@hook.subscribe.startup_once
+def launch_conky():
+    os.system('conky')
 
 keys = [
     
@@ -53,7 +57,8 @@ keys = [
         desc="Toggle between split and unsplit sides of stack",
     ),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
-    Key([mod], "b", lazy.spawn('librewolf'), desc="Launch librewolf"),
+    Key([mod], "b", lazy.spawn('brave-browser'), desc="Launch librewolf"),
+    Key([mod], "d", lazy.spawn("dmenu_run -l 20 -nb '#121417' -nf '#e5c5aa' -sb '#665f54' -sf '#1298ba'"), desc="Launch dmenu"), #509452
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
@@ -155,8 +160,8 @@ layouts = [
 
 widget_defaults = dict(
     font="sans",
-    fontsize=18,
-    padding=3,
+    fontsize=14,
+    padding=0,
     background=colors[0]
 )
 extension_defaults = widget_defaults.copy()
