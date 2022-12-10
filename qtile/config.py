@@ -7,7 +7,7 @@ from libqtile.utils import guess_terminal
 import os
 
 mod = "mod4"
-terminal = guess_terminal()
+terminal = guess_terminal("kitty")
 
 # Callbak functions for keys
 @hook.subscribe.startup_once
