@@ -6,6 +6,8 @@
 !conky
 conky/*
 !conky/conky.conf
+!ranger
+!ranger/*
 !alacritty
 !alacritty/*
 !i3/*
