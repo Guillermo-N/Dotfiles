@@ -167,6 +167,7 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
+
 screens = [
     Screen(
         #wallpaper = '~/Pictures/ThinkPad_wallpaper.jpg',
@@ -286,7 +287,7 @@ screens = [
                     background = colors[0]
                 ),
                 widget.Clock(
-                    format="%I:%M %p // %d-%m-%Y",
+                    format="%I:%M %p %d-%m-%Y",
                     foreground = colors[7]
                     ),
                 widget.Sep(
